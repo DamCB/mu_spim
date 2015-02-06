@@ -20,9 +20,11 @@ sample();
 
 phone(phone_back_z=20);
 
+
 collimation_lens(source_position=excitation_source);
 
 mirror_center = [excitation_source[0],
-    focal_point[1],
-    focal_point[2]];
+                 focal_point[1],
+		 focal_point[2]];
 excitation_mirror(optical_center=mirror_center);
+cylindrical_lens();

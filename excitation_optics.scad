@@ -12,14 +12,14 @@ module collimation_lens
 // 0 AOI, ON BOTH OPTICAL SURFACES
 (
     source_position=[0, 0, 0],
-    phi_ext=18.4, //9.2,
+    phi_ext=9.2, //9.2,
     height_ext=6.4,
     back_focal_length=5.2,
 )
 {
     translate(source_position)
 	translate([0, 0, back_focal_length])
-	cylinder(d=phi_ext, h=height_ext, center=false, $fn=100);
+	cylinder(r=phi_ext/2, h=height_ext, center=false, $fn=100);
 }
 
 module excitation_mirror
@@ -38,6 +38,44 @@ module excitation_mirror
 	    cube(size=[width, width, width], center=true);
 	    rotate([0, angle, 0]) translate([width*0.707, 0, 0])
 	    cube(size=[width*1.42, width*1.42, width*1.42], center=true);
+	}
+    }
+}
+
+module cylindrical_lens
+// NOTES/SPECIFICATIONS:
+// 1.DESIGN WAVELENGTH: 587.6nm
+// 2.FOCAL LENGTH: f=5.79mm ± 1%
+// 3.BACK FOCAL LENGTH(REF): bf=4.0mm
+// 4.CLEAR APERTURE: >90% OF SURFACE LENGTH AND HEIGHT
+// 5.SURFACE QUALITY: 60-40 SCRATCH-DIG
+// 6.CENTRATION: ≤ 5arcmin
+// 7.LENGTH AND HEIGHT TOLERANCE: +0.0/-0.1mm
+// 8.THICKNESS TOLERANCE: ±0.1mm
+// 9.SURFACE ACCURACY:
+// POWER = 1 FRINGE (S1), 3 FRINGES (S2)
+// IRREGULARITY = λ/4 (S1), λ (S2 H), λ/cm (S2 L)
+// 10.COATING: BBAR Ravg<0.5% FROM 350nm-700nm,
+//   0 AOI, ON OUTER OPTICAL SURFACES
+(
+    height=4.0,
+    length=6.0,
+    rect_thick=2.0,
+    tot_thick=2.8,
+    radius=3.0,
+    back_focal_length=4.0,
+)
+{
+    cyl_thick = tot_thick - rect_thick;
+    translate([back_focal_length, 0, 0])
+    intersection()
+    {
+	translate([tot_thick/2, 0, 0])
+	cube([tot_thick, length, height], center=true);
+	translate([tot_thick-radius, 0, 0])
+	{
+	    rotate([90, 0, 0])
+	    cylinder(r=radius, h=length, center=true, $fn=100);
 	}
     }
 }
