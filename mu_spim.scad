@@ -15,6 +15,7 @@ module sample
 
 use <phone.scad>;
 use <excitation_optics.scad>
+use <collection_optics.scad>
 
 sample();
 
@@ -28,3 +29,4 @@ mirror_center = [excitation_source[0],
 		 focal_point[2]];
 excitation_mirror(optical_center=mirror_center);
 cylindrical_lens();
+imaging_lens();
