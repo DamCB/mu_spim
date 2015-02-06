@@ -1,5 +1,6 @@
 
 module collimation_lens
+// radiospare P/N AC050-008-A-ML
 // DESIGN WAVELENGTHS: 486.1nm, 587.6, AND 656.3nm
 // FOCAL LENGTH: 7.5mm 1%
 // BACK FOCAL LENGTH (REF): 5.2mm
@@ -23,6 +24,7 @@ module collimation_lens
 }
 
 module excitation_mirror
+// thorlabs P/N MRA05-E02
 (
     optical_center=[0, 0, 0],
     width=5,
@@ -43,6 +45,7 @@ module excitation_mirror
 }
 
 module cylindrical_lens
+// thorlabs P/N LJ1918L1-A
 // NOTES/SPECIFICATIONS:
 // 1.DESIGN WAVELENGTH: 587.6nm
 // 2.FOCAL LENGTH: f=5.79mm ± 1%
@@ -78,4 +81,15 @@ module cylindrical_lens
 	    cylinder(r=radius, h=length, center=true, $fn=100);
 	}
     }
+}
+
+
+module excitation_filter
+// edmund optics P/N 48-632
+(
+    diameter=12,
+    thickness=2.5
+)
+{
+    cylinder(r=diameter/2, h=thickness, $fn=100);
 }

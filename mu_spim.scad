@@ -28,5 +28,13 @@ mirror_center = [excitation_source[0],
                  focal_point[1],
 		 focal_point[2]];
 excitation_mirror(optical_center=mirror_center);
+
+filter_deport = 8.0;
+translate([excitation_source[0],
+           focal_point[1],
+	   focal_point[2] - filter_deport])
+   excitation_filter();
+
 cylindrical_lens();
+
 imaging_lens();
