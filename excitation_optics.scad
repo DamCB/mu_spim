@@ -32,6 +32,7 @@ module excitation_mirror
     angle=45,
 )
 {
+    color([0.5, 0.5, 0.5])
     translate(optical_center)
     {
 	mirror([1, 0, 0])
@@ -70,6 +71,7 @@ module cylindrical_lens
 )
 {
     cyl_thick = tot_thick - rect_thick;
+    color([0., 0., 0.3, 0.5])
     translate([back_focal_length, 0, 0])
     intersection()
     {
@@ -91,5 +93,6 @@ module excitation_filter
     thickness=2.5
 )
 {
+    color([0.1, 0.2, 0.8, 0.5])
     cylinder(r=diameter/2, h=thickness, $fn=100);
 }

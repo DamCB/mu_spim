@@ -21,7 +21,6 @@ sample();
 
 phone(phone_back_z=20);
 
-
 collimation_lens(source_position=excitation_source);
 
 mirror_center = [excitation_source[0],
@@ -35,6 +34,8 @@ translate([excitation_source[0],
 	   focal_point[2] - filter_deport])
    excitation_filter();
 
-cylindrical_lens();
+cyl_lens_BFL = 4.0;
+
+cylindrical_lens(back_focal_length=cyl_lens_BFL);
 
 imaging_lens();
