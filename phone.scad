@@ -15,7 +15,7 @@ module phone
   source_pos = [35, 34, 10],
 )
 {
-    color([0., 0., 0., 0.8])
+    color([0.2, 0.2, 0.2, 0.8])
     translate(-detector_pos) translate([0, 0, -phone_back_z])
     {
 	difference()
