@@ -37,6 +37,7 @@ translate([excitation_source[0],
 	   focal_point[2] - filter_deport])
 excitation_filter();
 
+// cylindrical lens Back Focal Length
 cyl_lens_BFL = 4.0;
 cylindrical_lens(back_focal_length=cyl_lens_BFL);
 
@@ -67,10 +68,10 @@ difference()
 }
 
 
-union()
+scale([1, 1, 0.2]) union()
 {
     rotate([0, 90, 0])
-    cylinder(r1=0.1, r2=exc_waist/2, h=cyl_lens_BFL, $fn=100);
+    cylinder(r1=0.2, r2=exc_waist/2, h=cyl_lens_BFL, $fn=100);
     rotate([0, -90, 0])
-    cylinder(r1=0.1, r2=exc_waist/2, h=cyl_lens_BFL, $fn=100);
+    cylinder(r1=0.2, r2=exc_waist/2, h=cyl_lens_BFL, $fn=100);
 }
