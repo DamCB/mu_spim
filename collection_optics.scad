@@ -13,3 +13,15 @@ module imaging_lens
 	cube([2*radius+0.1, 2*radius+0.1, 2*radius+0.1], center=true);
     }
 }
+
+
+module collection_filter
+// edmund optics P/N 48-632
+(
+    diameter=12,
+    thickness=2.5
+)
+{
+    color([0.1, 0.2, 0.8, 0.5])
+    cylinder(r=diameter/2, h=thickness, $fn=100);
+}
