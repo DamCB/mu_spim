@@ -1,3 +1,10 @@
+use <phone.scad>;
+use <excitation_optics.scad>;
+use <collection_optics.scad>;
+use <light_path.scad>;
+use <chamber.scad>;
+use <optics_block.scad>;
+
 
 // phone model = Samsung galaxy nexus -tm-
 // portrait mode
@@ -12,13 +19,6 @@ module sample
 {translate(sample_pos) sphere(0.5, $fn=10);
 }
 
-use <phone.scad>;
-use <excitation_optics.scad>;
-use <collection_optics.scad>;
-use <light_path.scad>;
-use <chamber.scad>;
-
-
 sample();
 phone(phone_back_z=20);
 
@@ -32,7 +32,7 @@ mirror_center = [excitation_source[0],
 		 focal_point[2]];
 excitation_mirror(optical_center=mirror_center);
 
-filter_deport = 8.0;
+filter_deport = 10;
 
 translate([excitation_source[0]+2,
            focal_point[1],
@@ -59,15 +59,27 @@ excitation_beam(
 
 
 chamber_center=[-2., 0, 3.5];
-coverslips(chamber_center=chamber_center);
-whole_chamber();
+
+//coverslips(chamber_center=chamber_center);
+
+translate([4, 0, 0])
+x_excitation_rods(position=x_adjust_contact);
+
+whole_chamber(chamber_center=chamber_center);
+chamber_top(position=x_adjust_contact);
+base_block();
+x_adjust_contact = [10, 0, 15];
+x_excitation_adjuster(adjuster_tip=x_adjust_contact);
+x_excitation_rods();
+
+y_excitation_rods();
+y_excitation_adjuster();
+
+
+collimation_block();
 
 // carrenage
-
-
-
 //dimensions hors tout
-
 
 //color([0., 0., 0., 0.1])
 //translate([0, ])
