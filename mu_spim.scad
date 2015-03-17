@@ -3,8 +3,8 @@ use <excitation_optics.scad>;
 use <collection_optics.scad>;
 use <light_path.scad>;
 use <chamber.scad>;
-use <optics_block.scad>;
-
+use <optic_blocks.scad>;
+use <base.scad>;
 
 // phone model = Samsung galaxy nexus -tm-
 // portrait mode
@@ -19,8 +19,6 @@ module sample
 {translate(sample_pos) sphere(0.5, $fn=10);
 }
 
-sample();
-phone(phone_back_z=20);
 
 // Excitation optics
 col_lens_BFL = 5.2;
@@ -57,7 +55,6 @@ excitation_beam(
     cyl_lens_BFL=cyl_lens_BFL,
     mirror_center=mirror_center);
 
-
 chamber_center=[-2., 0, 3.5];
 
 //coverslips(chamber_center=chamber_center);
@@ -65,9 +62,12 @@ chamber_center=[-2., 0, 3.5];
 translate([4, 0, 0])
 x_excitation_rods(position=x_adjust_contact);
 
+sample();
+phone(phone_back_z=20);
+
+
 whole_chamber(chamber_center=chamber_center);
 chamber_top(position=x_adjust_contact);
-base_block();
 x_adjust_contact = [10, 0, 15];
 x_excitation_adjuster(adjuster_tip=x_adjust_contact);
 x_excitation_rods();
@@ -76,6 +76,7 @@ y_excitation_rods();
 y_excitation_adjuster();
 
 
+base_block();
 collimation_block();
 
 // carrenage
@@ -83,3 +84,5 @@ collimation_block();
 
 //color([0., 0., 0., 0.1])
 //translate([0, ])
+dt12xy();
+optics_plate();

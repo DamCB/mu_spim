@@ -1,7 +1,6 @@
 use <chamber.scad>;
 use <excitation_optics.scad>;
 use <collection_optics.scad>;
-
 use <libraries/thread.scad>;
 
 
@@ -73,7 +72,7 @@ module y_excitation_adjuster
 
 module x_excitation_rods
 (
-    interaxial_dist = 12,
+    interaxial_dist = 14,
     position=[15, 0, 15],
 )
 {
@@ -90,7 +89,7 @@ module x_excitation_rods
 
 module y_excitation_rods
 (
-    interaxial_dist = 22,
+    interaxial_dist = 24,
     position=[15, 0, -5],
 )
 {
@@ -119,7 +118,7 @@ module collimation_block
 	    {
 		translate([exc_axis_x-1.8, 0, -4.51])
 		cube([6.1*1.42, 5.1*1.42, 10*1.42], center=true);
-		translate([exc_axis_x-3, 0, 15]) cube([8, 19, 20], center=true);
+		translate([exc_axis_x-3, 0, 15]) cube([8, 22, 20], center=true);
 		xy_excitation_holes();
 	    }
 	}
@@ -168,7 +167,7 @@ module chamber_top
     translate(position)
     difference()
     {
-	translate([-7, 0, 0]) cube([14, 18, 10], center=true);
+	translate([-7, 0, 0]) cube([14, 20, 10], center=true);
 	union()
 	{
 	    //offset(0.1)
@@ -183,9 +182,9 @@ module chamber_top
 		cube([10, 10, 20], center=true);
 	    }
 	    translate([-8, 0, 5]) rotate([0, -30, 0])
-	    cube([20, 20, 6], center=true);
-	    translate([-9, 0, 1.2]) rotate([0, -60, 0])
-	    cube([2, 10, 2], center=true);
+	    cube([20, 22, 6], center=true);
+	    // translate([-9, 0, 1.2]) rotate([0, -60, 0])
+	    // cube([2, 10, 2], center=true);
 	    translate(magnets_center - position )//magnets_center)//+[0, 0, -1.1])
 	    four_magnet_holes(inter_axial_x=6,
 		inter_axial_y=12);
@@ -215,7 +214,7 @@ module base_block
 	    union()
 	    {
 		filter_slot(filter_center=[2+exc_axis_x, 0, -10.] - position);
-		rotate([0, 0, 180]) translate([2, 0, -10.] - position)  filter_slot();
+		rotate([0, 0, 180]) translate([5, 0, -10.] - position)  filter_slot();
 		//excitation clearing
 		translate([exc_axis_x, 0, -20] - position) cylinder(r=3, h=30, $fn=100);
 		//collection clearing
@@ -225,12 +224,14 @@ module base_block
 		cylinder(r=1.5, h=5, $fn=100);
 		translate([exc_axis_x, 0, -22] - position)
 		metric_thread(9, 0.5, 10, internal=true);
+		translate([0, 15, -11.5]) cube([36, 5.1, 5.2], center=true);
+		translate([0, -15, -11.5]) cube([36, 5.1, 5.2], center=true);
 		// four_magnet_holes(inter_axial_x=6,
 		// 	inter_axial_y=12);
 	    }
 	}
 	translate(-position)
-	%lens_holder();
+	lens_holder();
     }
 }
 
@@ -238,14 +239,10 @@ module lens_holder
 (
     lens_BFL=2,
     lens_dia=2,
-    position=[4, 0, 0],
     cube_h=2.5,
     cone_h=3,
 )
 {
-    translate(position)
-    union()
-    translate(-position)
     translate([0, 0, -lens_BFL-cone_h])
     difference()
     {
@@ -267,9 +264,9 @@ module filter_slot
 {
 
     translate(filter_center)
-    union()
+    hull()
     {
-	translate([0, -(filter_dia+tol)/2, 0])
+	translate([filter_dia/2, -(filter_dia+tol)/2, 0])
 	cube([filter_dia+tol, filter_dia+tol, filter_thick+tol], center=false);
 	cylinder(r=(filter_dia+tol)/2, h=filter_thick+tol, $fn=100);
     }
@@ -291,6 +288,6 @@ x_excitation_rods();
 y_excitation_adjuster();
 
 //chamber_top(position=x_adjust_contact);
-base_block();
-%collimation_block();
+%base_block();
+//collimation_block();
 //xy_excitation_holes();
