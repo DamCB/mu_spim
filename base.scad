@@ -1,19 +1,23 @@
+use <phone.scad>;
 
 
 module dt12xy
 (
     //thorlabs P/N DT12XY/M
-    position=[60, -20, 1]
+    position=[60, -20, 8]
 )
 {
     translate(position)
     {
 	union()
 	{
-	    rotate([90, 0, 0]) translate([0, 8, 13]) dt12xy_ajust();
-	    rotate([0, 90, 0]) translate([8, 0, 13]) dt12xy_ajust();
+	    rotate([0, 90, 0]) translate([-5, 0, 13]) dt12xy_ajust();
+	    rotate([90, 0, 0]) translate([0, -5, 13]) dt12xy_ajust();
 	    cube([25.4, 25.4, 30], center=true);
 	}
+	rotate([0, 0, 90])
+	dt12b_m();
+	rotate([180, 0, 0])
 	dt12b_m();
     }
 }
@@ -57,17 +61,46 @@ module dt12b_m
 
 module optics_plate
 (
-    position=[40, -10, -19]
+    position=[36, -10, -19]
 )
 {
     translate(position)
     translate([0, 0, 2.5])
     difference()
     {
-	cube([100, 50, 5], center=true);
+	cube([92, 50, 5], center=true);
 	translate([5.05-position[0], -position[1], 0])
 	cube([36, 25.1, 5.1], center=true);
     }
 }
 
-dt12b_m();
+
+// module foot
+// (
+
+// )
+
+//dt12b_m();
+module phone_stand
+(
+    angle = -45,
+)
+{
+     difference()
+    {
+	translate([50, 0, 6])
+	cube([180, 100, 70], center=true);
+	union()
+	{
+	    translate([43, 0, -20])
+	    cube([140, 80, 30], center=true);
+	    translate([40, 40, 40]) rotate([angle, 0, 0])
+	    cube([210, 80, 40], center=true);
+	    translate([40, -50, 0]) cube([220, 50, 100], center=true);
+	}
+    }
+}
+
+dt12xy();
+phone();
+phone_stand();
