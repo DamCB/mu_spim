@@ -59,16 +59,16 @@ chamber_center=[-2., 0, 3.5];
 
 //coverslips(chamber_center=chamber_center);
 
-translate([4, 0, 0])
-x_excitation_rods(position=x_adjust_contact);
+// translate([4, 0, 0])
+// x_excitation_rods(position=x_adjust_contact);
 
 sample();
 phone(phone_back_z=20);
 
 
 whole_chamber(chamber_center=chamber_center);
-%chamber_top(position=x_adjust_contact);
 x_adjust_contact = [10, 0, 15];
+%chamber_top(position=x_adjust_contact);
 x_excitation_adjuster(adjuster_tip=x_adjust_contact);
 x_excitation_rods();
 
@@ -79,11 +79,11 @@ y_excitation_adjuster();
 %base_block();
 %collimation_block();
 
-// carrenage
-//dimensions hors tout
+// // carrenage
+// //dimensions hors tout
 
-//color([0., 0., 0., 0.1])
-//translate([0, ])
-//rotate([0, 0, 90])
-%dt12xy();
-%optics_plate();
+// //color([0., 0., 0., 0.1])
+// //translate([0, ])
+// //rotate([0, 0, 90])
+dt12xy();
+optics_plate();
