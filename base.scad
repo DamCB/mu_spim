@@ -61,7 +61,7 @@ module dt12b_m
 
 module optics_plate
 (
-    position=[36, -10, -19]
+    position=[36, -8, -19]
 )
 {
     translate(position)
@@ -69,9 +69,23 @@ module optics_plate
     difference()
     {
 	cube([92, 50, 5], center=true);
-	translate([5.05-position[0], -position[1], 0])
-	cube([36, 25.1, 5.1], center=true);
+	union()
+	{
+	    translate([5.05-position[0], -position[1], 0])
+	    cube([36, 25.1, 5.1], center=true);
+	    translate([10, 12, -20])
+	    cylinder(r=8, h=30);
+	}
     }
+}
+
+module backplate
+(
+    position=[60, -20, 30]
+)
+{
+    translate(position)
+    cube([50, 50, 10], center=true);
 }
 
 
@@ -86,21 +100,13 @@ module phone_stand
     angle = -45,
 )
 {
-     difference()
-    {
-	translate([50, 0, 6])
-	cube([180, 100, 70], center=true);
-	union()
-	{
-	    translate([43, 0, -20])
-	    cube([140, 80, 30], center=true);
-	    translate([40, 40, 40]) rotate([angle, 0, 0])
-	    cube([210, 80, 40], center=true);
-	    translate([40, -50, 0]) cube([220, 50, 100], center=true);
-	}
-    }
+
+
 }
 
 dt12xy();
+optics_plate();
 phone();
+backplate();
+
 phone_stand();
