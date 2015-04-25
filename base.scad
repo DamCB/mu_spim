@@ -94,7 +94,79 @@ module backplate
 
 // )
 
-//dt12b_m();
+module rail
+(
+    entraxe=10,
+    dia=3,
+    length=100,
+)
+{
+    ax_shift=entraxe/2;
+    rad = dia/2;
+    union()
+    {
+	translate([-ax_shift, 0, 0])
+	cylinder(r=rad, h=length,
+	    center=true, $fn=12);
+	translate([ax_shift, 0, 0])
+	cylinder(r=rad, h=length,
+	    center=true, $fn=12);
+    }
+}
+
+
+module xy_rails
+(
+    position=[130, 30, -20],
+    x_shift=-70,
+    x_length=200,
+    y_shift=-30,
+    y_length=100,
+    entraxe=10
+)
+{
+    translate(position) translate([0, 0, -entraxe*0.75])
+    {
+	// x axis
+	translate([x_shift, 0, entraxe/2])
+	rotate([0, 90, 0])
+	rail(length=x_length);
+	// y axis
+	translate([0, y_shift, 0])
+	rotate([0, 90, 0]) rotate([90, 0, 0])
+	rail(length=y_length);
+    }
+}
+
+
+
+module crux
+(
+        position=[130, 40, -20],
+)
+{
+    translate(position)
+    {
+	xy_rails(position=[0, 0, 0]);
+	difference()
+	{
+	    translate([-10, 0, -5])
+	    cube([30, 30, 25], center=true);
+	    union()
+	    {
+		xy_rails(position=[0, 0, 0]);
+		translate([-24, -12, -5])// rotate([90, 0, 0])
+		sphere(r=8, center=true);
+		translate([-24, -19, -5]) rotate([90, 0, 0])
+		cylinder(r=8, h=20, center=true);
+	    }
+	}
+    }
+}
+
+
+
+
 module phone_stand
 (
     angle = -45,
@@ -108,5 +180,6 @@ dt12xy();
 optics_plate();
 phone();
 backplate();
-
 phone_stand();
+
+crux();
