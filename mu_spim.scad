@@ -68,7 +68,7 @@ phone(phone_back_z=20);
 
 whole_chamber(chamber_center=chamber_center);
 x_adjust_contact = [10, 0, 15];
-%chamber_top(position=x_adjust_contact);
+chamber_top(position=x_adjust_contact);
 x_excitation_adjuster(adjuster_tip=x_adjust_contact);
 x_excitation_rods();
 
@@ -76,8 +76,8 @@ y_excitation_rods();
 y_excitation_adjuster();
 
 
-%base_block();
-%collimation_block();
+base_block();
+collimation_block();
 
 // // carrenage
 // //dimensions hors tout

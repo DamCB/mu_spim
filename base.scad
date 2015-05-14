@@ -73,8 +73,6 @@ module optics_plate
 	{
 	    translate([5.05-position[0], -position[1], 0])
 	    cube([36, 25.1, 5.1], center=true);
-	    translate([10, 12, -20])
-	    cylinder(r=8, h=30);
 	}
     }
 }

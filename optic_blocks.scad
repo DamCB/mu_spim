@@ -102,6 +102,7 @@ module y_excitation_rods
     }
 }
 
+//@CNC export
 module collimation_block
 (
     position=[15, 0, 3.5],
@@ -144,20 +145,19 @@ module xy_excitation_holes
 	translate([0, 0, -18])
 	//cylinder(r=4, h=20, $fn=60);
 	translate([-4.8, -4, 0])
-	cube([8, 8, 20], center=True);
-	translate([0, 0, 1.8])
-	metric_thread(4.5, 0.5, 6.2, internal=true);
+	cube([8, 8, 20], center=true);
+	// translate([0, 0, 1.8])
+	// metric_thread(4.5, 0.5, 6.2, internal=true);
     }
-    translate(x_tip+[6.2, 0, 0])
-    rotate([0, -90, 0])
-    metric_thread(4.5, 0.5, 6.2, internal=true);
+    // translate(x_tip+[6.2, 0, 0])
+    // rotate([0, -90, 0])
+    // metric_thread(4.5, 0.5, 6.2, internal=true);
 
 }
 
 chamber_cube_outer=14;
 chamber_center=[-2., 0, 3.5];
 magnets_center = chamber_center + [3, 0, chamber_cube_outer/2];
-
 
 module chamber_top
 (
@@ -274,7 +274,7 @@ module filter_slot
 //whole_chamber(chamber_center=chamber_center, outer=chamber_cube_outer);
 
 x_adjust_contact = [10, 0, 15];
-x_excitation_adjuster(adjuster_tip=x_adjust_contact);
+// x_excitation_adjuster(adjuster_tip=x_adjust_contact);
 
 // translate([4, 0, 0])
 // x_excitation_rods(position=x_adjust_contact);
@@ -283,11 +283,11 @@ x_excitation_adjuster(adjuster_tip=x_adjust_contact);
 im_lens_BFL=2;
 //imaging_lens(back_focal_length=im_lens_BFL);
 
-y_excitation_rods();
-x_excitation_rods();
-y_excitation_adjuster();
+// y_excitation_rods();
+// x_excitation_rods();
+// y_excitation_adjuster();
 
 //chamber_top(position=x_adjust_contact);
-%base_block();
+base_block();
 //collimation_block();
 //xy_excitation_holes();
