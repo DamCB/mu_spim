@@ -4,6 +4,30 @@ use <collection_optics.scad>;
 use <libraries/thread.scad>;
 
 
+// This is a crudely simply metric thread
+// not ISO
+module metric_thread(diameter=8, pitch=1, length=1,
+    internal=false, n_starts=1, $fn=12)
+{
+   // Number of turns needed.
+   n_turns = floor(length/pitch);
+   n_segments = $fn;
+   h = pitch * cos(30);
+
+   union()
+   {
+
+       // Solid center, including Dmin truncation.
+       if (internal) {
+           cylinder(r=diameter/2 - h*5/8, h=length, $fn=n_segments);
+       } else {
+
+           // External thread includes additional relief.
+           cylinder(r=diameter/2 - h*5.3/8, h=length, $fn=n_segments);
+       }
+   }
+}
+
 module hex_adjustment_screw
 (
     //THORLABS P/N F3SS8
@@ -102,7 +126,25 @@ module y_excitation_rods
     }
 }
 
-//@CNC export
+/// Combinaision of the above
+/// Two axis focalisation of the light sheet
+module sheet_focalisation
+(
+    x_adjust_contact = [10, 0, 15],
+)
+{
+    x_excitation_adjuster(adjuster_tip=x_adjust_contact);
+
+    translate([4, 0, 0])
+    x_excitation_rods(position=x_adjust_contact);
+
+    y_excitation_rods();
+    y_excitation_adjuster();
+}
+
+
+
+// @CNC
 module collimation_block
 (
     position=[15, 0, 3.5],
@@ -120,7 +162,7 @@ module collimation_block
 		translate([exc_axis_x-1.8, 0, -4.51])
 		cube([6.1*1.42, 5.1*1.42, 10*1.42], center=true);
 		translate([exc_axis_x-3, 0, 15]) cube([8, 22, 20], center=true);
-		xy_excitation_holes();
+		%xy_excitation_holes();
 	    }
 	}
     }
@@ -133,8 +175,11 @@ module xy_excitation_holes
 )
 {
     // x axis
-    x_excitation_rods();
-    translate([12, 0, 0]) x_excitation_rods();
+    offset(r=0.1)
+    {
+	x_excitation_rods();
+    }
+    translate([10, 0, 0]) x_excitation_rods();
     // y axis
     y_excitation_rods();
     translate([0, 0, 12])
@@ -143,15 +188,14 @@ module xy_excitation_holes
     union()
     {
 	translate([0, 0, -18])
-	//cylinder(r=4, h=20, $fn=60);
 	translate([-4.8, -4, 0])
-	cube([8, 8, 20], center=true);
-	// translate([0, 0, 1.8])
-	// metric_thread(4.5, 0.5, 6.2, internal=true);
+	cube([8, 8, 20], center=false);
+	translate([0, 0, 1.8])
+	metric_thread(4.5, 0.5, 6.2, internal=true);
     }
-    // translate(x_tip+[6.2, 0, 0])
-    // rotate([0, -90, 0])
-    // metric_thread(4.5, 0.5, 6.2, internal=true);
+    translate(x_tip+[6.2, 0, 0])
+    rotate([0, -90, 0])
+    metric_thread(4.5, 0.5, 6.2, internal=true);
 
 }
 
@@ -271,23 +315,16 @@ module filter_slot
 	cylinder(r=(filter_dia+tol)/2, h=filter_thick+tol, $fn=100);
     }
 }
-//whole_chamber(chamber_center=chamber_center, outer=chamber_cube_outer);
 
-x_adjust_contact = [10, 0, 15];
-// x_excitation_adjuster(adjuster_tip=x_adjust_contact);
 
-// translate([4, 0, 0])
-// x_excitation_rods(position=x_adjust_contact);
+chamber_top_pos = [10, 0, 15];
 
-// Imaging optics
-im_lens_BFL=2;
-//imaging_lens(back_focal_length=im_lens_BFL);
 
-// y_excitation_rods();
-// x_excitation_rods();
-// y_excitation_adjuster();
+whole_chamber(chamber_center=chamber_center,
+    outer=chamber_cube_outer);
 
-//chamber_top(position=x_adjust_contact);
+//sheet_focalisation(x_adjust_contact=chamber_top_pos);
+
+chamber_top(position=chamber_top_pos);
 base_block();
-//collimation_block();
-//xy_excitation_holes();
+collimation_block();
