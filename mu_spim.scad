@@ -79,7 +79,7 @@ chamber_center=[-2., 0, 3.5];
 whole_chamber(chamber_center=chamber_center);
 
 sheet_focalisation(x_adjust_contact, y_adjust_contact);
-%base_block();
+base_block();
 collimation_block(position=[exc_axis_x+5, 0, 3.5],
     exc_axis_x=exc_axis_x);
 
