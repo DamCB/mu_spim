@@ -6,12 +6,16 @@ use <chamber.scad>;
 use <optic_blocks.scad>;
 use <base.scad>;
 
-// phone model = Samsung galaxy nexus -tm-
+include <base_dimensions.scad>;
+
+
+
+// phone model = Motorola G 4G (2015)
 // portrait mode
 
-focal_point = [0, 0, 0];
-excitation_source = [14, 0, -24]; //estimated
-
+// focal_point = [0, 0, 0];
+// excitation_source = [14, 0, -24]; //estimated
+// exc_axis_x = excitation_source[0];
 
 
 module sample
@@ -62,25 +66,22 @@ excitation_beam(
     cyl_lens_BFL=cyl_lens_BFL,
     mirror_center=mirror_center);
 
-chamber_center=[-2., 0, 3.5];
 
 //coverslips(chamber_center=chamber_center);
 
 sample();
 phone(phone_back_z=20);
 
+chamber_top_pos = [10, 0, 15];
+chamber_top(position=chamber_top_pos);
 
+chamber_center=[-2., 0, 3.5];
 whole_chamber(chamber_center=chamber_center);
-sheet_focalisation();
 
-base_block();
-collimation_block();
+sheet_focalisation(x_adjust_contact, y_adjust_contact);
+%base_block();
+collimation_block(position=[exc_axis_x+5, 0, 3.5],
+    exc_axis_x=exc_axis_x);
 
-// // carrenage
-// //dimensions hors tout
-
-// //color([0., 0., 0., 0.1])
-// //translate([0, ])
-// //rotate([0, 0, 90])
 dt12xy();
 optics_plate();

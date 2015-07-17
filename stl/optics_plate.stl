@@ -1,0 +1,198 @@
+solid OpenSCAD_Model
+  facet normal -1 0 0
+    outer loop
+      vertex -10 -33 -19
+      vertex -10 -12.55 -14
+      vertex -10 -12.55 -19
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex -10 -12.55 -14
+      vertex -10 -33 -19
+      vertex -10 -33 -14
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex -10 12.55 -19
+      vertex -10 17 -14
+      vertex -10 17 -19
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex -10 17 -14
+      vertex -10 12.55 -19
+      vertex -10 12.55 -14
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.05 -12.55 -14
+      vertex 82 17 -14
+      vertex 23.05 12.55 -14
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex -10 17 -14
+      vertex 23.05 12.55 -14
+      vertex 82 17 -14
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.05 12.55 -14
+      vertex -10 17 -14
+      vertex -10 12.55 -14
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 82 17 -14
+      vertex 23.05 -12.55 -14
+      vertex 82 -33 -14
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex -10 -33 -14
+      vertex 23.05 -12.55 -14
+      vertex -10 -12.55 -14
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 23.05 -12.55 -14
+      vertex -10 -33 -14
+      vertex 82 -33 -14
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 82 -33 -14
+      vertex 82 17 -19
+      vertex 82 17 -14
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 82 17 -19
+      vertex 82 -33 -14
+      vertex 82 -33 -19
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 82 17 -19
+      vertex -10 17 -14
+      vertex 82 17 -14
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex -10 17 -14
+      vertex 82 17 -19
+      vertex -10 17 -19
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 82 -33 -19
+      vertex 23.05 -12.55 -19
+      vertex 82 17 -19
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex -10 -33 -19
+      vertex 23.05 -12.55 -19
+      vertex 82 -33 -19
+    endloop
+  endfacet
+  facet normal -0 0 -1
+    outer loop
+      vertex 23.05 -12.55 -19
+      vertex -10 -33 -19
+      vertex -10 -12.55 -19
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 23.05 12.55 -19
+      vertex 82 17 -19
+      vertex 23.05 -12.55 -19
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex -10 17 -19
+      vertex 23.05 12.55 -19
+      vertex -10 12.55 -19
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 23.05 12.55 -19
+      vertex -10 17 -19
+      vertex 82 17 -19
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex -10 -33 -19
+      vertex 82 -33 -14
+      vertex -10 -33 -14
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 82 -33 -14
+      vertex -10 -33 -19
+      vertex 82 -33 -19
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 23.05 -12.55 -19
+      vertex 23.05 12.55 -14
+      vertex 23.05 12.55 -19
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 23.05 12.55 -14
+      vertex 23.05 -12.55 -19
+      vertex 23.05 -12.55 -14
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex -10 12.55 -19
+      vertex 23.05 12.55 -14
+      vertex -10 12.55 -14
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 23.05 12.55 -14
+      vertex -10 12.55 -19
+      vertex 23.05 12.55 -19
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 23.05 -12.55 -19
+      vertex -10 -12.55 -14
+      vertex 23.05 -12.55 -14
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex -10 -12.55 -14
+      vertex 23.05 -12.55 -19
+      vertex -10 -12.55 -19
+    endloop
+  endfacet
+endsolid OpenSCAD_Model

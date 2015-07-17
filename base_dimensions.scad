@@ -1,5 +1,4 @@
 
-
 focal_point = [0, 0, 0];
 
 excitation_source = [14, 0, -24]; //estimated

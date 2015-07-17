@@ -141,9 +141,9 @@ module sheet_focalisation
     x_excitation_adjuster(adjuster_tip=x_adjust_contact);
 
     translate([4, 0, 0])
-    x_excitation_rods(position=x_adjust_contact);
+    x_excitation_rods(adjuster_tip=x_adjust_contact);
 
-    y_excitation_rods(position=y_adjust_contact);
+    y_excitation_rods(adjuster_tip=y_adjust_contact);
     y_excitation_adjuster(adjuster_tip=y_adjust_contact);
 }
 
@@ -216,12 +216,12 @@ module chamber_top
     translate(position)
     difference()
     {
-	translate([-7, 0, 0]) cube([14, 20, 10], center=true);
+	translate([-7, 0, 0]) cube([16, 20, 10], center=true);
 	union()
 	{
 	    //offset(0.1)
-	    x_excitation_rods(position=[-2, 0, 0]);
-	    x_excitation_rods(position=[2, 0, 0]);
+	    x_excitation_rods(adjuster_tip=[-3, 0, 0]);
+	    x_excitation_rods(adjuster_tip=[3, 0, 0]);
 	    translate([-12, 0, -5]) cylinder(r=5, h=3, $fn=50);
 	    translate([-15, 0, -5]) rotate([0, 30, 0])
 	    union()
@@ -230,14 +230,14 @@ module chamber_top
 		translate([-5, 0, 10])
 		cube([10, 10, 20], center=true);
 	    }
-	    translate([-8, 0, 5]) rotate([0, -30, 0])
-	    cube([20, 22, 6], center=true);
+	    translate([-8, 0, 7]) rotate([0, -30, 0])
+	    cube([22, 22, 10], center=true);
 	    // translate([-9, 0, 1.2]) rotate([0, -60, 0])
 	    // cube([2, 10, 2], center=true);
 	    translate(magnets_center - position )//magnets_center)//+[0, 0, -1.1])
 	    four_magnet_holes(inter_axial_x=6,
 		inter_axial_y=12);
-	    translate(chamber_center - position - [-5, 0, 0])
+	    translate(chamber_center - position - [-3, 0, 0])
 	    cube(chamber_cube_outer+0.2, center=true);
 	}
     }
@@ -249,7 +249,7 @@ module base_block
     position=[5, 0, -5],
     filter_thick=2.5+0.1,
     cube_h=14.,
-    exc_axis_x=10,
+    exc_axis_x=exc_axis_x,
     //position=[0, 0, 0]
 )
 {
@@ -259,7 +259,7 @@ module base_block
 	difference()
 	{
 	    translate([0, 0, -cube_h/2])
-	    cube([35, 30, cube_h], center=true);
+	    cube([40, 30, cube_h], center=true);
 	    union()
 	    {
 		filter_slot(filter_center=[2+exc_axis_x, 0, -10.] - position);
@@ -273,8 +273,8 @@ module base_block
 		cylinder(r=1.5, h=5, $fn=100);
 		translate([exc_axis_x, 0, -22] - position)
 		metric_thread(9, 0.5, 10, internal=true);
-		translate([0, 15, -11.5]) cube([36, 5.1, 5.2], center=true);
-		translate([0, -15, -11.5]) cube([36, 5.1, 5.2], center=true);
+		translate([0, 15, -11.5]) cube([42, 5.1, 5.2], center=true);
+		translate([0, -15, -11.5]) cube([42, 5.1, 5.2], center=true);
 		// four_magnet_holes(inter_axial_x=6,
 		// 	inter_axial_y=12);
 	    }
