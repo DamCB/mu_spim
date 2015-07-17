@@ -1,3 +1,5 @@
+
+include <base_dimensions.scad>;
 use <chamber.scad>;
 use <excitation_optics.scad>;
 use <collection_optics.scad>;
@@ -75,7 +77,7 @@ module adjuster
 
 module x_excitation_adjuster
 (
-    adjuster_tip = [10, 0, 15]
+    adjuster_tip = x_adjust_contact,
 )
 {
     translate(adjuster_tip)
@@ -85,7 +87,7 @@ module x_excitation_adjuster
 
 module y_excitation_adjuster
 (
-    adjuster_tip = [18, 0, -5]
+    adjuster_tip = y_adjust_contact
 )
 {
     translate(adjuster_tip)
@@ -97,9 +99,10 @@ module y_excitation_adjuster
 module x_excitation_rods
 (
     interaxial_dist = 14,
-    position=[15, 0, 15],
+    adjuster_tip = x_adjust_contact,
 )
 {
+    position = adjuster_tip;// + [5, 0, 0];
     translate(position)
     {
 	translate([0, -interaxial_dist/2, 0])
@@ -114,9 +117,10 @@ module x_excitation_rods
 module y_excitation_rods
 (
     interaxial_dist = 24,
-    position=[15, 0, -5],
+    adjuster_tip = y_adjust_contact,
 )
 {
+    position=adjuster_tip;// + [5, 0, 0];
     translate(position)
     {
 	translate([0, -interaxial_dist/2, 0])
@@ -130,7 +134,8 @@ module y_excitation_rods
 /// Two axis focalisation of the light sheet
 module sheet_focalisation
 (
-    x_adjust_contact = [10, 0, 15],
+    x_adjust_contact = x_adjust_contact,
+    y_adjust_contact = y_adjust_contact
 )
 {
     x_excitation_adjuster(adjuster_tip=x_adjust_contact);
@@ -138,8 +143,8 @@ module sheet_focalisation
     translate([4, 0, 0])
     x_excitation_rods(position=x_adjust_contact);
 
-    y_excitation_rods();
-    y_excitation_adjuster();
+    y_excitation_rods(position=y_adjust_contact);
+    y_excitation_adjuster(adjuster_tip=y_adjust_contact);
 }
 
 
@@ -162,7 +167,7 @@ module collimation_block
 		translate([exc_axis_x-1.8, 0, -4.51])
 		cube([6.1*1.42, 5.1*1.42, 10*1.42], center=true);
 		translate([exc_axis_x-3, 0, 15]) cube([8, 22, 20], center=true);
-		%xy_excitation_holes();
+		xy_excitation_holes(x_adjust_contact, y_adjust_contact);
 	    }
 	}
     }

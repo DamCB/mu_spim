@@ -1,8 +1,13 @@
+include <base_dimensions.scad>;
+
 use <optic_blocks.scad>;
 
-focal_point = [0, 0, 0];
-excitation_source = [14, 0, -24]; //estimated
-exc_axis_x = excitation_source[0];
 
-
-collimation_block(position=[15, 0, 3.5], exc_axis_x=10);
+position=[exc_axis_x+5, 0, 3.5];
+//position=[0, 0, 0];
+//translate(-position)
+//projection(cut=true)
+//translate([0, 2, 3.414])//3.414])
+//rotate([90, 0, 0])
+collimation_block(position=position, exc_axis_x=exc_axis_x);
+//sheet_focalisation(x_adjust_contact, y_adjust_contact);
