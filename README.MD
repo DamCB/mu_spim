@@ -14,7 +14,7 @@ _Pour prendre une image, on suspend l'échantillon (ici un grain de poivre) dans
 la petite chambre cubique, devant l'objectif du téléphone_
 
 
-The microscope uses the phone's LED flash to illuminate the sample, and a **cymlindrical lens** creates a light-sheet. A section of the flat light field can be seen on the next image:
+The microscope uses the phone's LED flash to illuminate the sample, and a **cylindrical lens** creates a light-sheet. A section of the flat light field can be seen on the next image:
 
 _Le microscope utilise la LED du téléphone pour illuminer un échantillon, et **une lentille cylindrique** créé une feuille de lumière. On voit ce champ lumineux par la tranche sur l'image suivante_
 
