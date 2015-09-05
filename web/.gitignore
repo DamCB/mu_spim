@@ -1,0 +1,8 @@
+output
+cache
+*.*~
+Makefile~
+*.py[co]
+.emacs.desktop
+.ipynb_checkpoints
+*.pid

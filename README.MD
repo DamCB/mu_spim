@@ -1,4 +1,4 @@
-# This is µ-SPIM openscad repository -- welcome
+# This is the mu spim project -- welcome
 
 
 Mu-spim implements **light sheet microscopy** on a
