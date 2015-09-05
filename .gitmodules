@@ -1,0 +1,3 @@
+[submodule "mu_spim_web"]
+	path = mu_spim_web
+	url = git@github.com:DamCB/mu_spim_web.git
