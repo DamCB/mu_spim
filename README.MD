@@ -1,4 +1,6 @@
-# This is µ-SPIM openscad repository -- welcome
+# This is the mu spim project -- welcome
+
+[![Join the chat at https://gitter.im/DamCB/mu_spim](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/DamCB/mu_spim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 Mu-spim implements **light sheet microscopy** on a
