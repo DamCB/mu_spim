@@ -10,7 +10,9 @@ num_teeth_internal = 12;
 
 num_teeth_external = 15;
 
-
+module gear
+()
+{
 difference()
 {
     translate([2.15, 0, 0])
@@ -28,7 +30,7 @@ difference()
 
 gear_internal(num_teeth=num_teeth_external,
               gear_diameter=30);
-
+}
 
 
 //---------------------------------------------------------|
