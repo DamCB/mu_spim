@@ -202,10 +202,17 @@ module sheet_focalisation
 module base_plate
 (
      imaging_axis_center = [10, 0, 0],
-     
+     axis_dist
 )
 {
-     
+     difference()
+     {
+	  cube([25.4, 3, 70])
+	       union()
+	       {
+		    
+		    }
+     }
 }
 
 // @CNC
