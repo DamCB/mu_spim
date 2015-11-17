@@ -202,7 +202,6 @@ module sheet_focalisation
 module base_plate
 (
      imaging_axis_center = [10, 0, 0],
-     axis_dist
 )
 {
      difference()
