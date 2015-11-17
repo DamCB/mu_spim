@@ -1,7 +1,9 @@
 
 focal_point = [0, 0, 0];
 
-excitation_source = [14, 0, -24]; //estimated
+camera_lens_center = [0, 0, -25];
+
+excitation_source = [14, 0, -29]; //estimated
 exc_axis_x = excitation_source[0];
 
 // collimation block position

@@ -1,3 +1,6 @@
+
+
+
 module phone_sgn // samsung Galxy Nexus
 (
   /// Phone is assumed to be in portrait mode
@@ -5,14 +8,14 @@ module phone_sgn // samsung Galxy Nexus
   phone_length = 136,      // x axis
   phone_width = 68,  // y axis
   phone_thikness = 10,
-  phone_back_z = 20, // distance of phone back from the focal point
+  phone_back_z = 25, // distance of phone back from the focal point
   phone_aperture_diameter = 8, // estimated
   phone_excitation_diameter = 8,
   // detector and source position with respect to
   // phone face upper right corner
   detector_pos = [25, 34, 10],
   //
-  source_pos = [35, 34, 10],
+  source_pos = [39, 34, 10],
 )
 {
     color([0.2, 0.2, 0.2, 0.8])

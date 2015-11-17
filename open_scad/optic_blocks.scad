@@ -110,11 +110,40 @@ rotate([0, 180, 0])
 cylinder(r=d_screw/2, h=h_screw, $fn=36);
 }
 
+module sr1
+(
+  r = 4,
+  h = 25.4,
+  d_screw = 2.4, //4-40 screws at the ends
+  h_screw = 2,
+)
+{
+cylinder(r=r, h=h, $fn=36);//THORLABS P/N SR0.5
+translate([0, 0, h])
+cylinder(r=d_screw/2, h=h_screw, $fn=36);
+rotate([0, 180, 0])
+cylinder(r=d_screw/2, h=h_screw, $fn=36);
+}
+
+module sr15
+(
+  r = 4,
+  h = 25.4,
+  d_screw = 2.4, //4-40 screws at the ends
+  h_screw = 2,
+)
+{
+cylinder(r=r, h=h, $fn=36);//THORLABS P/N SR0.5
+translate([0, 0, h])
+cylinder(r=d_screw/2, h=h_screw, $fn=36);
+rotate([0, 180, 0])
+cylinder(r=d_screw/2, h=h_screw, $fn=36);
+}
 
 
 module x_excitation_rods
 (
-    interaxial_dist = 14,
+    interaxial_dist = 16,
     adjuster_tip = x_adjust_contact,
     d = 4,
     d_screw=2.4
@@ -126,16 +155,16 @@ module x_excitation_rods
     {
 	translate([0, -interaxial_dist/2, 0])
 	rotate([0, -90, 0])
-  sr05(r=r, d_screw=d_screw);
+	     sr05(r=r, d_screw=d_screw);
 	translate([0, interaxial_dist/2, 0])
-	rotate([0, -90, 0])
-  sr05(r=r, d_screw=d_screw);
+	     rotate([0, -90, 0])
+	     sr05(r=r, d_screw=d_screw);
     }
 }
 
 module y_excitation_rods
 (
-    interaxial_dist = 24,
+    interaxial_dist = 16,
     adjuster_tip = y_adjust_contact,
     d = 4,
     d_screw = 2.4
@@ -146,10 +175,9 @@ module y_excitation_rods
     translate(position)
     {
 	translate([0, -interaxial_dist/2, 0])
-  sr05(r=r, d_screw=d_screw);
-
+	     sr05(r=r, d_screw=d_screw);
 	translate([0, interaxial_dist/2, 0])
-  sr05(r=r, d_screw=d_screw);
+	     sr05(r=r, d_screw=d_screw);
     }
 }
 
@@ -171,6 +199,14 @@ module sheet_focalisation
 }
 
 
+module base_plate
+(
+     imaging_axis_center = [10, 0, 0],
+     
+)
+{
+     
+}
 
 // @CNC
 module collimation_block
@@ -322,8 +358,6 @@ module lens_holder
     }
 }
 
-
-
 module filter_slot
 (
     filter_thick=2.5,
@@ -341,16 +375,3 @@ module filter_slot
 	cylinder(r=(filter_dia+tol)/2, h=filter_thick+tol, $fn=100);
     }
 }
-
-
-chamber_top_pos = [10, 0, 15];
-
-
-whole_chamber(chamber_center=chamber_center,
-    outer=chamber_cube_outer);
-
-//sheet_focalisation(x_adjust_contact=chamber_top_pos);
-
-chamber_top(position=chamber_top_pos);
-base_block();
-collimation_block();

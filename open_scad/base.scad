@@ -75,11 +75,6 @@ module optics_plate
 	          translate([5.05-position[0], -position[1], 0])
 	          {
               cube([36, 25.1, 5.1], center=true);
-              union()
-              {
-                translate([])
-                %cylinder(r1=5.1, r2=4.1);
-              }
             }
 	      }
     }
@@ -103,7 +98,7 @@ module backplate
 module rail
 (
     entraxe=10,
-    dia=3,
+    dia=4.,
     length=100,
 )
 {
@@ -111,12 +106,12 @@ module rail
     rad = dia/2;
     union()
     {
-	translate([-ax_shift, 0, 0])
-	cylinder(r=rad, h=length,
-	    center=true, $fn=12);
-	translate([ax_shift, 0, 0])
-	cylinder(r=rad, h=length,
-	    center=true, $fn=12);
+	      translate([-ax_shift, 0, 0])
+	      cylinder(r=rad, h=length,
+	              center=true, $fn=24);
+	      translate([ax_shift, 0, 0])
+	      cylinder(r=rad, h=length,
+	               center=true, $fn=24);
     }
 }
 
@@ -182,10 +177,15 @@ module phone_stand
 
 }
 
-dt12xy();
-optics_plate();
+// dt12xy();
+// optics_plate();
 phone();
-backplate();
+//backplate();
 phone_stand();
 
-crux();
+translate([40, 0, 0])
+rotate([90, 0, 0])
+rotate([0, 90, 0])
+rail(entraxe=30);
+
+//crux();
