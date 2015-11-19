@@ -1,0 +1,22 @@
+import FreeCAD
+
+import sys
+sys.path.append('/home/guillaume/Projects/Mu-Spim/mu_spim/freecad/py_mu_spim')
+
+import py_mu_spim
+from py_mu_spim.parameters import globales, phones, lenses
+
+doc = FreeCAD.getDocument("mu_spim")
+optics_cst = globales.get_optics_cst()
+
+doc.addObject("App::DocumentObjectGroup","collection_optics")
+
+focus = optics_cst['focal_point']
+doc.getObject("Point").Placement = App.Placement(App.Vector(App.Vector(*focus)),
+															App.Rotation(App.Vector(0,0,1),0))
+z_shift = lenses.get_exc_translation()
+FreeCAD.getDocument("mu_spim").getObject("Connect001").Placement = App.Placement(App.Vector(0,0,z_shift),
+																				 App.Rotation(App.Vector(0,0,1),0))
+
+
+doc.recompute()
